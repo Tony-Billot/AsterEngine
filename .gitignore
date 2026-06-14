@@ -56,3 +56,7 @@ dkms.conf
 
 #IDes and Editors
 .vs/
+
+.vscode/
+
+*.exe
