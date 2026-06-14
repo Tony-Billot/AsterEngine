@@ -33,31 +33,33 @@ This project focuses on exploring core graphics and engine concepts:
 
 The engine is structured in layered components:
 
-
-Platform Layer (Win32)
-↓
-Framebuffer
-↓
-Renderer (primitives, rasterization)
-↓
-World Layer (camera, tilemap, collision)
-
-
+```
+Platform Layer (Win32)  
+↓  
+Framebuffer  
+↓  
+Renderer (primitives, rasterization)  
+↓  
+World Layer (camera, tilemap, collision)  
+```
+  
+  
+  
 ### 📁 Planned structure
 
-
-AsterEngine/
-├── src/
-│ ├── core/
-│ ├── platform/
-│ ├── graphics/
-│ ├── math/
-│ └── world/
-├── include/
-├── assets/
-├── build/
-└── README.md
-
+```
+AsterEngine/  
+├── src/  
+│   ├── core/  
+│   ├── platform/  
+│   ├── graphics/  
+│   ├── math/  
+│   └── world/  
+├── include/  
+├── assets/  
+├── build/  
+└── README.md  
+```
 
 ---
 
