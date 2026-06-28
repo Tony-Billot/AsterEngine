@@ -12,6 +12,18 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         return 0;
     }
 
+    if (msg == WM_SIZE)
+    {
+        int width = LOWORD(lParam);
+        int height = HIWORD(lParam);
+
+        Framebuffer fb = createFrameBuffer(width, height);
+        clearFramebuffer(&fb, (struct Color){0, 0, 0, 255});
+        displayFramebuffer(&fb, hwnd);
+
+        return 0;
+    }
+
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
@@ -49,13 +61,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
     // Create a black filled framebuffer for background
     Framebuffer black_background = createFrameBuffer(800, 600);
-    for(int y = 0, x = 0; y < black_background.height; y++)
-    {
-        for(x = 0; x < black_background.width; x++)
-        {
-            putPixel(&black_background, x, y, (struct Color){0, 0, 0, 255});
-        }
-    }
+    clearFramebuffer(&black_background, (struct Color){0, 0, 0, 255});
 
     // Loop of the program; stops when no message is received anymore (window is closed)
     while (GetMessage(&msg, NULL, 0, 0))
@@ -63,7 +69,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
         TranslateMessage(&msg);
         DispatchMessage(&msg);
         displayFramebuffer(&black_background, hwnd);
-        clearFramebuffer(&black_background, (struct Color){0, 0, 0, 255});
     }
 
     return 0;
