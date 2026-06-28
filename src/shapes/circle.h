@@ -1,5 +1,7 @@
+#include "../math/point.h"
+
 typedef struct Circle {
-    int x, y; // Center of the circle
+    Point center; // Center of the circle
     int radius; // Radius of the circle
 } Circle;
 

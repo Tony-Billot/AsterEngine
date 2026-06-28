@@ -4,13 +4,13 @@
 
 // Bresenham's algorithm to draw a line
 void drawLine(struct Framebuffer* fb, Line* l, struct Color color) {
-    int dx = l->x2 - l->x1;
-    int dy = l->y2 - l->y1;
+    int dx = l->p2.x - l->p1.x;
+    int dy = l->p2.y - l->p1.y;
     int err = 0;
-    int y = l->y1;
+    int y = l->p1.y;
 
-    for (int x = l->x1; x <= l->x2; x++) {
-        putPixel(fb, x, y, color);
+    for (int x = l->p1.x; x <= l->p2.x; x++) {
+        putPixel(fb, (Point){x, y}, color);
         err += dy;
         if (2 * err >= dx) {
             y++;

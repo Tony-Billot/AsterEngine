@@ -1,6 +1,8 @@
+#include "../math/point.h"
+
 typedef struct Line {
-    int x1, y1;
-    int x2, y2;
+    Point p1;
+    Point p2;
 } Line;
 
 void drawLine(struct Framebuffer* fb, Line* l, struct Color color);

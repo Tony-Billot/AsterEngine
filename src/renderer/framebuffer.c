@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <stdlib.h>
+#include "../math/point.h"
 
 struct Framebuffer
 {
@@ -26,14 +27,14 @@ struct Framebuffer createFrameBuffer(int width, int height)
 }
 
 // Function to set a pixel in the framebuffer
-void putPixel(struct Framebuffer* fb, int x, int y, struct Color color)
+void putPixel(struct Framebuffer* fb, Point p, struct Color color)
 {
-    if(x < 0 || x >= fb->width || y < 0 || y >= fb->height)
+    if(p.x < 0 || p.x >= fb->width || p.y < 0 || p.y >= fb->height)
     {
-        printf("Error: Pixel coordinates (%d, %d) are out of bounds for framebuffer of size (%d, %d)\n", x, y, fb->width, fb->height);
+        printf("Error: Pixel coordinates (%d, %d) are out of bounds for framebuffer of size (%d, %d)\n", p.x, p.y, fb->width, fb->height);
         return;
     }
-    int index = (y * fb->width + x) * 4;
+    int index = (p.y * fb->width + p.x) * 4;
     fb->pixels[index] = color.b;
     fb->pixels[index + 1] = color.g;
     fb->pixels[index + 2] = color.r;
@@ -70,7 +71,7 @@ void clearFramebuffer(struct Framebuffer* fb, struct Color color)
     {
         for(int x = 0; x < fb->width; x++)
         {
-            putPixel(fb, x, y, color);
+            putPixel(fb, (Point){x, y}, color);
         }
     }
 }

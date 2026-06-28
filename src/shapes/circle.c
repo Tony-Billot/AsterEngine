@@ -1,5 +1,6 @@
 #include "../renderer/framebuffer.h"
 #include "circle.h"
+#include "../math/point.h"
 
 void drawCircle(struct Framebuffer* fb, Circle* c, struct Color color) {
     int x = 0;
@@ -7,14 +8,14 @@ void drawCircle(struct Framebuffer* fb, Circle* c, struct Color color) {
     int d = 1 - c->radius;
 
     while(x <= y) {
-        putPixel(fb, c->x + x, c->y + y, color);
-        putPixel(fb, c->x + y, c->y + x, color);
-        putPixel(fb, c->x - x, c->y + y, color);
-        putPixel(fb, c->x - y, c->y + x, color);
-        putPixel(fb, c->x - x, c->y - y, color);
-        putPixel(fb, c->x - y, c->y - x, color);
-        putPixel(fb, c->x + x, c->y - y, color);
-        putPixel(fb, c->x + y, c->y - x, color);
+        putPixel(fb, (Point){c->center.x + x, c->center.y + y}, color);
+        putPixel(fb, (Point){c->center.x + y, c->center.y + x}, color);
+        putPixel(fb, (Point){c->center.x - x, c->center.y + y}, color);
+        putPixel(fb, (Point){c->center.x - y, c->center.y + x}, color);
+        putPixel(fb, (Point){c->center.x - x, c->center.y - y}, color);
+        putPixel(fb, (Point){c->center.x - y, c->center.y - x}, color);
+        putPixel(fb, (Point){c->center.x + x, c->center.y - y}, color);
+        putPixel(fb, (Point){c->center.x + y, c->center.y - x}, color);
 
         x++;
 
