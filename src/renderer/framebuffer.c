@@ -34,14 +34,15 @@ void displayFramebuffer(struct Framebuffer* fb, HWND hwnd) // HWND = screen iden
     HDC hdc = GetDC(hwnd); // hdc = handle to device context
 
     // 2. Describe the bitmap
-    BITMAPINFO bmi;
-    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    BITMAPINFO bmi = {0};
 
+    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
     bmi.bmiHeader.biWidth = fb->width;
     bmi.bmiHeader.biHeight = -fb->height;
     bmi.bmiHeader.biPlanes = 1;
-    bmi.bmiHeader.biBitCount = 32; // 4 bytes per pixel (
+    bmi.bmiHeader.biBitCount = 32; // 4 bytes per pixel
     bmi.bmiHeader.biCompression = BI_RGB;
+    bmi.bmiHeader.biSizeImage = 0;
 
     // 3. Draw the bitmap to the window
     StretchDIBits(hdc, 0, 0, fb->width, fb->height, 0, 0, fb->width, fb->height, fb->pixels, &bmi, DIB_RGB_COLORS, SRCCOPY);
