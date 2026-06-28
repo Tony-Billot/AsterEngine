@@ -1,4 +1,5 @@
 #include <windows.h>
+#include <stdlib.h>
 
 struct Framebuffer
 {
@@ -20,6 +21,11 @@ struct Framebuffer createFrameBuffer(int width, int height)
 // Function to set a pixel in the framebuffer
 void putPixel(struct Framebuffer* fb, int x, int y, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
+    if(x < 0 || x >= fb->width || y < 0 || y >= fb->height)
+    {
+        printf("Error: Pixel coordinates (%d, %d) are out of bounds for framebuffer of size (%d, %d)\n", x, y, fb->width, fb->height);
+        return;
+    }
     int index = (y * fb->width + x) * 4;
     fb->pixels[index] = r;
     fb->pixels[index + 1] = g;
