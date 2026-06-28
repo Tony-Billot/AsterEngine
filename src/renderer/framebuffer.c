@@ -8,6 +8,13 @@ struct Framebuffer
     unsigned char* pixels;
 };
 
+struct Color {
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+    unsigned char a;
+};
+
 // Function to create a framebuffer with specified width and height
 struct Framebuffer createFrameBuffer(int width, int height)
 {
@@ -19,7 +26,7 @@ struct Framebuffer createFrameBuffer(int width, int height)
 }
 
 // Function to set a pixel in the framebuffer
-void putPixel(struct Framebuffer* fb, int x, int y, unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+void putPixel(struct Framebuffer* fb, int x, int y, struct Color color)
 {
     if(x < 0 || x >= fb->width || y < 0 || y >= fb->height)
     {
@@ -27,10 +34,10 @@ void putPixel(struct Framebuffer* fb, int x, int y, unsigned char r, unsigned ch
         return;
     }
     int index = (y * fb->width + x) * 4;
-    fb->pixels[index] = r;
-    fb->pixels[index + 1] = g;
-    fb->pixels[index + 2] = b;
-    fb->pixels[index + 3] = a;
+    fb->pixels[index] = color.r;
+    fb->pixels[index + 1] = color.g;
+    fb->pixels[index + 2] = color.b;
+    fb->pixels[index + 3] = color.a;
 }
 
 
@@ -55,4 +62,15 @@ void displayFramebuffer(struct Framebuffer* fb, HWND hwnd) // HWND = screen iden
 
     // 4. Release the device context
     ReleaseDC(hwnd, hdc);
+}
+
+void clearFramebuffer(struct Framebuffer* fb, struct Color color)
+{
+    for(int y = 0; y < fb->height; y++)
+    {
+        for(int x = 0; x < fb->width; x++)
+        {
+            putPixel(fb, x, y, color);
+        }
+    }
 }

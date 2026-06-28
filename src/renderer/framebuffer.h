@@ -8,7 +8,16 @@ typedef struct Framebuffer
     unsigned char* pixels;
 } Framebuffer;
 
+typedef struct Color {
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+    unsigned char a;
+} Color;
+
+
 // Function declarations for framebuffer operations
-void displayFramebuffer(struct Framebuffer* fb, HWND hwnd);
 struct Framebuffer createFrameBuffer(int width, int height);
-void putPixel(struct Framebuffer* fb, int x, int y, unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+void putPixel(struct Framebuffer* fb, int x, int y, struct Color color);
+void displayFramebuffer(struct Framebuffer* fb, HWND hwnd);
+void clearFramebuffer(struct Framebuffer* fb, struct Color color);

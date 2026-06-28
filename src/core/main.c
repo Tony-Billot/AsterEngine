@@ -53,7 +53,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
     {
         for(x = 0; x < black_background.width; x++)
         {
-            putPixel(&black_background, x, y, 0, 0, 0, 255);
+            putPixel(&black_background, x, y, (struct Color){0, 0, 0, 255});
         }
     }
 
@@ -63,7 +63,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
         TranslateMessage(&msg);
         DispatchMessage(&msg);
         displayFramebuffer(&black_background, hwnd);
-
+        clearFramebuffer(&black_background, (struct Color){0, 0, 0, 255});
     }
 
     return 0;
