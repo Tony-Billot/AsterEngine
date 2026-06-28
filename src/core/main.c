@@ -3,7 +3,8 @@
 #include <windows.h>
 
 #include "../shapes/line.h"
-
+#include "../shapes/square.h"
+#include "../shapes/circle.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -65,9 +66,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
     Framebuffer black_background = createFrameBuffer(800, 600);
     clearFramebuffer(&black_background, (struct Color){0, 0, 0, 255});
 
-    Line line = {100, 100, 700, 500};
-    drawLine(&black_background, &line, (struct Color){255, 0, 0, 255}); // Draw a red line
-
+    Circle circle = {400, 300, 100};
+    drawCircle(&black_background, &circle, (struct Color){255, 0, 0, 255}); // Red circle
 
     // Loop of the program; stops when no message is received anymore (window is closed)
     while (GetMessage(&msg, NULL, 0, 0))

@@ -34,9 +34,9 @@ void putPixel(struct Framebuffer* fb, int x, int y, struct Color color)
         return;
     }
     int index = (y * fb->width + x) * 4;
-    fb->pixels[index] = color.r;
+    fb->pixels[index] = color.b;
     fb->pixels[index + 1] = color.g;
-    fb->pixels[index + 2] = color.b;
+    fb->pixels[index + 2] = color.r;
     fb->pixels[index + 3] = color.a;
 }
 
