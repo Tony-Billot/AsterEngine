@@ -62,3 +62,6 @@ dkms.conf
 *.exe
 
 *.txt
+
+*/assets/*.bmp
+assets/

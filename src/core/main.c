@@ -5,6 +5,7 @@
 #include "../shapes/line.h"
 #include "../shapes/square.h"
 #include "../shapes/circle.h"
+#include "../pictures/picture.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -74,6 +75,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
     Square square = {(Point){200, 200}, (Point){600, 400}};
     drawSquare(&white_background, &square, (struct Color){0, 255, 0, 255}); // Green square
+
+    Picture* picture = loadPicture("assets/image.bmp");
+    Point picture_position = {300, 100};
+    drawPicture(&white_background, picture, picture_position);
 
     // Loop of the program; stops when no message is received anymore (window is closed)
     while (GetMessage(&msg, NULL, 0, 0))
